@@ -139,9 +139,9 @@ def dashboard(user):
         'series': [{'type': 'area', 'name': "Daily Score", 'data': dateDataList(daily_totals)}]
     }
 
-    f = open('output.txt', 'w')
-    f.write(str(dateDataList(daily_totals)))
-    f.close()
+    # f = open('output.txt', 'w')
+    # f.write(str(dateDataList(daily_totals)))
+    # f.close()
     bar_chart = json.dumps(bar_chart)
     progress_chart = json.dumps(progress_chart, default=dt.date.isoformat)
     stacked_chart = json.dumps(stacked_chart)
@@ -150,6 +150,10 @@ def dashboard(user):
                    [("prog_chart", progress_chart), ("daily_chart", daily_chart)]]
 
     return render_template("dashboard.html", user=user, charts=chart_table)
+
+@app.route("/hyperfine")
+def simulation():
+    return render_template("/Hyperfine/FloatingHourglass.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
